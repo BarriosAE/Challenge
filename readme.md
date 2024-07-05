@@ -2,8 +2,8 @@
 
 1. Clona el repositorio:
     ```sh
-    git clone https://github.com/tu_usuario/tu_repositorio.git
-    cd tu_repositorio
+    git clone https://github.com:BarriosAE/Challenge.git
+    cd Challenge
     ```
 
 2. Crea un entorno virtual:
@@ -26,10 +26,11 @@
 4. Instala las dependencias:
     ```sh
     pip install -r requirements.txt
+    playwright install
     ```
 
 ## Ejecución de las pruebas
 
 Para ejecutar las pruebas, asegúrate de que el entorno virtual esté activado y luego ejecuta:
 ```sh
-pytest
+pytest '.\tests\test_aliexpress.py'  
