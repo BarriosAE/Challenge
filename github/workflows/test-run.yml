@@ -30,7 +30,7 @@ jobs:
     
       - name: Install Playwright
         run: |
-          python -m playwright install
+          python -m regression install
 
       - name: Running Tests
         run: pytest -m ${{github.event.inputs.mark}} 

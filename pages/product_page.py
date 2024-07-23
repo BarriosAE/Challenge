@@ -1,4 +1,5 @@
 from playwright.sync_api import Page
+from playwright.sync_api import expect
 import allure
 
 class ProductPage:
@@ -13,6 +14,7 @@ class ProductPage:
     
         # Verificar si el elemento está visible
         if stock_text.is_visible():
+            expect(stock_text.get_by_text("Stock disponible")).to_be_visible()
             print("El stock está disponible y visible en la página.")
             self.take_screenshot("verify_stock_disponible")
         else:

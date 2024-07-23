@@ -33,4 +33,4 @@
 
 Para ejecutar las pruebas, asegúrate de que el entorno virtual esté activado y luego ejecuta:
 ```sh
-pytest '.\tests\test_aliexpress.py'  
+pytest '.\tests\ml.py'  
