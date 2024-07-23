@@ -1,0 +1,46 @@
+name: Run Tests On Demand
+on:
+  workflow_dispatch:
+    inputs:
+      mark:
+        description: 'Mark of the tests to be executed'
+        required: true
+        default: 'regression'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.client_payload.branch }}
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          architecture: 'x64'
+
+      - name: Installing Python Requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+    
+      - name: Install Playwright
+        run: |
+          python -m playwright install
+
+      - name: Running Tests
+        run: pytest -m ${{github.event.inputs.mark}} 
+        env:
+          PYTEST_ADDOPTS: "--color=yes"
+
+      - name: Generating Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: uala-backend-tests-report
+          path: report/uala-backend-tests-report.html
+

@@ -1,5 +1,6 @@
 import pytest
 from playwright.sync_api import Browser, sync_playwright
+import allure
 
 @pytest.fixture(scope='session')
 def browser():
